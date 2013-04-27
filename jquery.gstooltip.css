@@ -1,0 +1,20 @@
+
+
+
+.gs-tooltip-box {
+	background: rgba(0, 0, 0, 0.8);
+	border-radius: 12px;
+	font-size: 11px;
+	z-index: 999;
+	display: none;
+	position: absolute;
+	box-shadow: 3px 3px 7px #444;
+}
+
+.gs-tooltip-box > * {
+	padding: 5px;
+	color: #fff;
+	opacity: 0.8;
+	text-align: center;
+	font-weight: bold;
+}

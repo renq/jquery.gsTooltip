@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta http-equiv="Content-Language" content="pl" />  
+		<meta name="author" content="Michał Lipek" />
+
+		<title>jQuery GSToolTip</title>
+
+		<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css" rel="stylesheet">
+		<link media="all" rel="stylesheet" type="text/css" href="jquery.gstooltip.css" />
+		
+		<script src="//code.jquery.com/jquery-1.9.1.min.js"></script>
+		<script src="jquery.gstooltip.js" type="text/javascript"></script>
+		<script type="text/javascript">
+
+$(document).ready(function() {
+	$('.tool-tip').gsToolTip();
+	
+	$('.tool-tip2').gsToolTip({
+		width: 300,
+		top: 60,
+		left: -100,
+		cursor: 'move',
+		attribute: 'data-tooltip'
+	});
+	
+	$('.tooltips').gsToolTip({
+		attribute: 'data-tooltip',
+		cursor: 'help',
+		width: 200,
+		top: -30,
+		left: -30,
+		tooltipClass: 'my-tooltip',
+		tooltipTextClass: 'text',
+		onCreate: function(tooltipElement, tooltipConfig) {
+			/*
+			 * You can add some elements or completly rewrite tooltip HTML! 
+			 */
+			var $t = $(tooltipElement);
+			$t.prepend('<div class="header">Did you know?</div>');
+		}
+	});
+});
+		
+		</script>
+		<style>
+.example {
+	position: relative;
+	padding-top: 40px;
+}
+.example:after {
+	background-color: #F5F5F5;
+	border: 1px solid #DDDDDD;
+	border-radius: 4px 0 4px 0;
+	color: #9DA0A4;
+	content: "Example";
+	font-size: 12px;
+	font-weight: bold;
+	left: -1px;
+	padding: 3px 7px;
+	position: absolute;
+	top: -1px;
+}
+
+.example.example-js:after {
+	content: "JavaScript";
+}
+
+.example.example-html:after {
+	content: "HTML";
+}
+
+.example.example-css:after {
+	content: "CSS";
+}
+
+.my-tooltip {
+	background: none repeat scroll 0 0 #E8E8E8;
+	border: 1px solid #998899;
+	border-radius: 0 19px 0 20px;
+	display: none;
+	font-size: 14px;
+	opacity: 0.95;
+	padding: 10px;
+	position: absolute;
+	z-index: 100;
+}
+
+.my-tooltip .header {
+	color: #DD2D2A;
+	display: block;
+	font-size: 1.2em;
+	font-weight: bold;
+	padding: 5px;
+}
+
+.my-tooltip .text {
+	color: black;
+	padding: 5px;
+	text-align: left;
+}
+		</style>
+	</head>
+	<body>
+	
+	
+
+<div class="container">
+
+	<div class="masthead">
+		<h1 class="muted">gsTooltip()</h1>
+		<h4 class="muted">Tooltip plugin for jQuery</h4>
+	</div>
+
+	<hr>
+
+	<div>
+		<h1>Tooltips simplify!</h1>
+		<p class="lead">
+			This plugin is simple, I know that. But sometimes you don't need Swiss Army Knife, but
+			just a simple thing.<br />
+			This plugins shows tooltips and that's all it can do. <button class="tool-tip btn btn-primary" title="This is an sample tooltip!">Try it!</button>
+		</p>
+		<a class="btn btn-large btn-success tool-tip" href="https://github.com/renq/jquery.gsTooltip" title="Thanks!">Go to Github and download!</a>
+	</div>
+
+	<hr>
+
+	<div class="row-fluid">
+		<div class="span6">
+			<h2>Example 1</h2>
+			<div>
+				<p>
+					<strong>
+						<span class="tool-tip text-error" title="Example tooltip message">
+							Move your mouse here!
+						</span>
+					</strong>
+				</p>
+				
+				<pre class="example example-html">
+&lt;span class="tool-tip" title="Example tooltip message!"&gt;
+	Move your mouse here!
+&lt;/span&gt;
+				</pre>
+				<pre class="example example-js">
+$('.tool-tip').gsToolTip();
+				</pre>
+			</div>
+		</div>
+
+		<div class="span6">
+			<h2>Example 2</h2>
+			<div>
+				<p>
+					<strong>
+						<span class="tool-tip2 text-error" data-tooltip="This example shows you that text in tooltip can be much longer than just single line!">
+							Move your mouse here!
+						</span>
+					</strong>
+				</p>
+				
+				<pre class="example example-html">
+&lt;span class="tool-tip2" data-tooltip="This example shows you that text in tooltip can be much longer than just single line!"&gt;
+	Move your mouse here!
+&lt;/span&gt;
+				</pre>
+				<pre class="example example-js">
+$('.tool-tip2').gsToolTip({
+	width: 300,
+	top: 60,
+	left: -100,
+	cursor: 'move',
+	attribute: 'data-tooltip'
+});
+				</pre>
+			</div>
+		</div>
+	</div>
+	
+	<div class="row-fluid">
+		<div class="span12">
+			<h2>Example 3 (advanced)</h2>
+			<div>
+				<p>
+					<strong>
+						<span class="tooltips text-error" data-tooltip="This example shows you that text in tooltip can be much longer than just single line!">
+							Did you know you can move mouse cursor here?
+						</span>
+					</strong>
+				</p>
+				
+				<pre class="example example-html">
+&lt;span class="tooltips text-error" data-tooltip="This example shows you that text in tooltip can be much longer than just single line!"&gt;
+	Did you know you can move mouse cursor here?
+&lt;/span&gt;
+				</pre>
+				<pre class="example example-css">
+.my-tooltip {
+	background: none repeat scroll 0 0 #E8E8E8;
+	border: 1px solid #998899;
+	border-radius: 0 19px 0 20px;
+	display: none;
+	font-size: 14px;
+	opacity: 0.95;
+	padding: 10px;
+	position: absolute;
+	z-index: 100;
+}
+
+.my-tooltip .header {
+	color: #DD2D2A;
+	display: block;
+	font-size: 1.2em;
+	font-weight: bold;
+	padding: 5px;
+}
+
+.my-tooltip .text {
+	color: black;
+	padding: 5px;
+	text-align: left;
+}
+				</pre>
+				<pre class="example example-js">
+$('.tooltips').gsToolTip({
+	attribute: 'data-tooltip',
+	cursor: 'help',
+	width: 200,
+	top: -30,
+	left: -30,
+	tooltipClass: 'my-tooltip',
+	tooltipTextClass: 'text',
+	onCreate: function(tooltipElement, tooltipConfig) {
+		/*
+		 * You can add some elements or completly rewrite tooltip HTML! 
+		 */
+		var $t = $(tooltipElement);
+		$t.prepend('&lt;div class="header"&gt;Did you know?&lt;/div&gt;');
+	}
+});
+				</pre>
+			</div>
+		</div>
+		
+	</div>
+
+	<hr>
+
+	<footer class="footer">
+		<p>Code licensed under <a target="_blank" href="https://github.com/jquery/jquery/blob/master/MIT-LICENSE.txt">MIT license</a>,
+		documentation under <a href="http://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>.</p>
+		<p>Author: Michał Lipek</p>
+		<p>Thanks: <a href="http://www.goldensubmarine.com/">GoldenSubmarine</a></p>
+	</footer>
+
+</div>
+<!-- /container -->
+
+</body>
+</html>
